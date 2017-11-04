@@ -1,0 +1,63 @@
+1. Install kubectl latest release
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+
+2. Install pachyctl
+curl -o /tmp/pachctl.deb -L https://github.com/pachyderm/pachyderm/releases/download/v1.6.3/pachctl_1.6.3_amd64.deb && sudo dpkg -i /tmp/pachctl.deb
+
+Display minikube status
+minikube status
+
+Display default config
+kubectl config view
+
+Change to config directory
+cd do_not_checkin
+
+Copy files
+copy C:\Users\gavin\.minikube\ca.crt .\do_not_checkin
+copy C:\Users\gavin\.minikube\apiserver.crt .\do_not_checkin
+copy C:\Users\gavin\.minikube\apiserver.key .\do_not_checkin
+
+Create a file config-demo
+---------------------------------------
+apiVersion: v1
+kind: Config
+preferences: {}
+
+clusters:
+- cluster:
+  name: development
+
+users:
+- name: developer
+
+contexts:
+- context:
+  name: dev
+---------------------------------------
+
+kubectl config --kubeconfig=config-demo set-cluster development \
+    --server=https://192.168.99.100:8443 \
+    --certificate-authority=ca.crt
+
+kubectl config --kubeconfig=config-demo set-credentials developer \
+    --client-certificate=apiserver.crt --client-key=apiserver.key
+
+kubectl config --kubeconfig=config-demo set-context dev \
+    --cluster=development --user=developer
+
+kubectl config --kubeconfig=config-demo view
+
+kubectl config --kubeconfig=config-demo use-context dev
+
+kubectl config --kubeconfig=config-demo view
+
+export KUBECONFIG=config-demo
+
+kubectl get services
+
+# Use pachyderm
+pachctl deploy local
+pachctl port-forward &
+
+
