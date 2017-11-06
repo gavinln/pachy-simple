@@ -1,0 +1,21 @@
+pachctl list-repo
+pachctl create-repo images
+
+pachctl list-commit images
+
+pachctl put-file images master liberty.png -c -f http://imgur.com/46Q8nDz.png
+
+Display files in repo images, commit master
+pachctl list-file images master
+
+Identify file type
+pachctl get-file images master liberty.png | file -
+
+pachctl list-pipeline
+
+pachctl create-pipeline -f edges.json
+
+pachctl list-job
+
+pachctl list-repo
+

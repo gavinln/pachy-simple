@@ -10,6 +10,8 @@ minikube status
 Display default config
 kubectl config view
 
+export PATH=~:$PATH
+
 Change to config directory
 cd do_not_checkin
 
