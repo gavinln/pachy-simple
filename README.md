@@ -1,9 +1,9 @@
-# pachy-rds
+# pachy-simple
 
 * Source code - [Github][10]
 * Author - Gavin Noronha - <gavinln@hotmail.com>
 
-[10]: https://github.com/gavinln/pachy-rds
+[10]: https://github.com/gavinln/pachy-simple
 
 ## About
 
@@ -45,7 +45,7 @@ It has [Docker][50] installed using [Ansible][60]
 1. Change to the root of the project
 
     ```
-    cd pachy-rds
+    cd pachy-simple
     ```
 
 2. To start the virtual machine(VM) type
@@ -57,7 +57,7 @@ It has [Docker][50] installed using [Ansible][60]
 3. Connect to the VM
 
     ```
-    vagrant ssh pachy-rds
+    vagrant ssh pachy-simple
     ```
 
 ## Requirements
