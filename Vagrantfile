@@ -58,7 +58,7 @@ Vagrant.configure("2") do |config|
   #   vb.memory = "1024"
   # end
 
-  config.vm.define "pachy-ds", autostart: true do |machine|
+  config.vm.define "pachy-rds", autostart: true do |machine|
     machine.vm.provider "virtualbox" do |vb|
       # vb.gui = true
       vb.memory = "2048"
@@ -73,7 +73,7 @@ Vagrant.configure("2") do |config|
     end
 
     machine.vm.network "private_network", ip: "192.168.33.10"
-    machine.vm.hostname = "pachy-ds"
+    machine.vm.hostname = "pachy-rds"
 
     # machine.vm.provision "shell" do |sh|
     #   sh.path = "ansible/ansible_install.sh"

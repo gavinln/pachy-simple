@@ -1,0 +1,22 @@
+---
+- set_fact:
+    kubectl_release: "{{ item }}"
+  with_url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
+
+- debug:
+    msg: "{{ kubectl_release }}"
+
+- name: Download kubectl
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_release }}/bin/linux/amd64/kubectl
+    dest: /usr/local/bin
+    owner: ubuntu
+    group: ubuntu
+    mode: "u+x,g+x,o+x"
+
+- set_fact:
+    pachctl: "1.6.3"
+
+- name: Install pachctl
+  apt:
+    deb: https://github.com/pachyderm/pachyderm/releases/download/v{{ pachctl }}/pachctl_{{ pachctl }}_amd64.deb
