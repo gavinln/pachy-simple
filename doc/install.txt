@@ -17,6 +17,9 @@ cd do_not_checkin
 
 Copy files
 copy C:\Users\gavin\.minikube\ca.crt .\do_not_checkin
+copy C:\Users\gavin\.minikube\client.crt .\do_not_checkin
+copy C:\Users\gavin\.minikube\client.key .\do_not_checkin
+
 copy C:\Users\gavin\.minikube\apiserver.crt .\do_not_checkin
 copy C:\Users\gavin\.minikube\apiserver.key .\do_not_checkin
 
@@ -38,12 +41,15 @@ contexts:
   name: dev
 ---------------------------------------
 
+Set sharedfolder
+VBoxManage sharedfolder add minikube --name ws --hostpath %cd% --automount
+
 kubectl config --kubeconfig=config-demo set-cluster development \
     --server=https://192.168.99.100:8443 \
     --certificate-authority=ca.crt
 
 kubectl config --kubeconfig=config-demo set-credentials developer \
-    --client-certificate=apiserver.crt --client-key=apiserver.key
+    --client-certificate=client.crt --client-key=client.key
 
 kubectl config --kubeconfig=config-demo set-context dev \
     --cluster=development --user=developer
@@ -62,4 +68,7 @@ kubectl get services
 pachctl deploy local
 pachctl port-forward &
 
-
+Get virtualbox machine id
+use VBoxManage to map %USERPROFILE%\.minikube to minikube-config
+Get default config: kubectl config current-context
+Use current context to set context within the virtual machine
