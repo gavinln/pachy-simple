@@ -48,6 +48,12 @@ It has [Docker][50] installed using [Ansible][60]
     cd pachy-simple
     ```
 
+3. Set up the Minikube config directory
+
+    ```
+    set MK_CONFIG_DIR=%USERPROFILE%\.minikube
+    ```
+
 2. To start the virtual machine(VM) type
 
     ```

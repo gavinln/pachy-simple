@@ -79,3 +79,21 @@ https://www.youtube.com/watch?v=79c3wCVNsnc
 
 Reproducible Data Analysis in Jupyter
 https://www.youtube.com/watch?v=Pf1ADyUKOrE
+
+kubectl --kubeconfig=~/config-demo config set-cluster development \
+    --server=https://192.168.99.100:8443 \
+    --certificate-authority=/minikube-config/ca.crt
+
+kubectl --kubeconfig=~/config-demo config set-credentials developer \
+    --client-certificate=/minikube-config/client.crt \
+    --client-key=/minikube-config/client.key
+
+kubectl --kubeconfig=~/config-demo config set-context dev \
+    --cluster=development --user=developer
+
+kubectl --kubeconfig=~/config-demo config use-context dev
+
+kubectl --kubeconfig=~/config-demo config  view
+
+kubectl --kubeconfig=~/config-demo cluster-info dump
+

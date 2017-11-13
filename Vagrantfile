@@ -6,6 +6,9 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure("2") do |config|
+
+  ENV['MK_CONFIG_DIR'] || raise('MK_CONFIG_DIR not set')
+
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
@@ -59,6 +62,9 @@ Vagrant.configure("2") do |config|
   # end
 
   config.vm.define "pachy-simple", autostart: true do |machine|
+
+    config.vm.synced_folder ENV['MK_CONFIG_DIR'], "/minikube-config"
+
     machine.vm.provider "virtualbox" do |vb|
       # vb.gui = true
       vb.memory = "2048"
