@@ -42,7 +42,7 @@ contexts:
 ---------------------------------------
 
 Set sharedfolder
-VBoxManage sharedfolder add minikube --name ws --hostpath %cd% --automount
+VBoxManage sharedfolder add minikube --name --hostpath %cd% --automount
 
 kubectl config --kubeconfig=config-demo set-cluster development \
     --server=https://192.168.99.100:8443 \
@@ -70,5 +70,12 @@ pachctl port-forward &
 
 Get virtualbox machine id
 use VBoxManage to map %USERPROFILE%\.minikube to minikube-config
+VBoxManage sharedfolder add minikube --name --hostpath %cd% --automount
 Get default config: kubectl config current-context
 Use current context to set context within the virtual machine
+
+Provenance for Reproducible Data Science
+https://www.youtube.com/watch?v=79c3wCVNsnc
+
+Reproducible Data Analysis in Jupyter
+https://www.youtube.com/watch?v=Pf1ADyUKOrE
